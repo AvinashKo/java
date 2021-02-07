@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 
 public class MoveUpdateFiles {
-  public static void main(String args[]) throws IOException {
+  public static void main(String[] args) throws IOException {
 
     String WORKING_DIR = "/Users/a0k00hu/Desktop/program/test_env/test_data";
     String TO_COPY_DIR = "/Users/a0k00hu/Desktop/program/test_env/test_data/PERF";
@@ -19,12 +19,7 @@ public class MoveUpdateFiles {
 
     String[] directories =
         file.list(
-            new FilenameFilter() {
-              @Override
-              public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory() && name.startsWith("S", 0);
-              }
-            });
+            (current, name) -> new File(current, name).isDirectory() && name.startsWith("S", 0));
 
     if (directories != null && directories.length > 0) {
       moveDir(WORKING_DIR, TO_COPY_DIR, directories, FILE_SEPERATOR, 0);
@@ -38,34 +33,27 @@ public class MoveUpdateFiles {
   }
 
   public static void moveDir(
-      String workingDir, String toCopyDir, String dirList[], String FILE_SEPERATOR, int iterCount) {
+      String workingDir, String toCopyDir, String[] dirList, String FILE_SEPERATOR, int iterCount) {
 
     int MAX_RETRY = 5;
 
     int randomNum = getRandomNumber(dirList.length - 1);
     String sourceDirName = workingDir + FILE_SEPERATOR + dirList[randomNum];
     String destinationDirName = toCopyDir + FILE_SEPERATOR + dirList[randomNum];
-    String source = sourceDirName;
-    File srcDir = new File(source);
+    File srcDir = new File(sourceDirName);
 
-    String destination = destinationDirName;
-    File destDir = new File(destination);
+    File destDir = new File(destinationDirName);
 
     try {
       FileUtils.moveDirectory(srcDir, destDir);
-      File destinationDir = new File(destination);
+      File destinationDir = new File(destinationDirName);
       String[] filesList =
           destinationDir.list(
-              new FilenameFilter() {
-                @Override
-                public boolean accept(File current, String name) {
-                  return name.endsWith(".xml");
-                }
-              });
-      if (filesList.length > 0) {
+              (current, name) -> name.endsWith(".xml"));
+      if (filesList != null && filesList.length > 0) {
         updateFileWithTestData(
-            destination + FILE_SEPERATOR + filesList[0],
-            destination + FILE_SEPERATOR + "temp_272457243.xml");
+            destinationDirName + FILE_SEPERATOR + filesList[0],
+            destinationDirName + FILE_SEPERATOR + "temp_272457243.xml");
       }
     } catch (Exception e) {
       if (iterCount < MAX_RETRY)
