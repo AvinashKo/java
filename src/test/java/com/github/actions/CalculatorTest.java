@@ -1,36 +1,42 @@
 package com.github.actions;
 
-import com.github.actions.Calculator;
-import junit.framework.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
   @Test
+  @DisplayName("test sum")
   public void testSum() {
     Calculator calculator = new Calculator();
     int result = calculator.sum(2, 2);
-    if (result != 4) {
-      Assert.fail();
-    }
+    assertEquals(result, 4);
   }
 
   @Test
+  @DisplayName("test minus")
   public void testMinus() {
     Calculator calculator = new Calculator();
-    Assert.assertEquals(0, calculator.minus(2, 2));
+    assertEquals(0, calculator.minus(2, 2));
   }
 
   @Test
+  @DisplayName("test divide")
   public void testDivide() {
     Calculator calculator = new Calculator();
-    Assert.assertEquals(2, calculator.divide(6, 3));
+    assertEquals(2, calculator.divide(6, 3));
   }
 
-  @Test(expected = ArithmeticException.class)
+  @Test
+  @DisplayName("test divide on zero")
   public void testDivideWillThrowExceptionWhenDivideOnZero() {
-    Calculator calculator = new Calculator();
-    calculator.divide(6, 0);
+    assertThrows(ArithmeticException.class, () -> {
+      Calculator calculator = new Calculator();
+      calculator.divide(6, 0);
+    });
   }
+
 
 }

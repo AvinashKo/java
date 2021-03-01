@@ -132,5 +132,6 @@ public class MoveUpdateFiles {
 
     oldFile.delete();
     newFile.renameTo(oldFile);
+    String test = "hello";
   }
 }
