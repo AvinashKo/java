@@ -8,7 +8,7 @@ public class TwoDimensionalArrayTest {
 
     @Test
     @DisplayName("check rows and columns, general use-case")
-    public void findRowsAndColumns() {
+    public void testFindRowsAndColumns() {
         char[][] matrix = {
                 {'0', '1', '0', '0', '1'},
                 {'0', '1', '0', '0', '1'},
@@ -23,7 +23,7 @@ public class TwoDimensionalArrayTest {
 
     @Test
     @DisplayName("check rows and columns, when rows and columns are different")
-    public void findDifferentRowsAndColumns() {
+    public void testFindDifferentRowsAndColumns() {
         char[][] matrix = {
                 {'0', '1', '0', '0', '1'},
                 {'0', '1', '0', '0', '1'},
@@ -39,7 +39,7 @@ public class TwoDimensionalArrayTest {
 
     @Test
     @DisplayName("should handle invalid input entry")
-    public void invalidMatrix(){
+    public void testInvalidMatrix(){
       char[][] matrix = null;
       TwoDimensionalArray twoDimensionalArray = new TwoDimensionalArray();
       assertEquals(twoDimensionalArray.getRows(matrix), 0);

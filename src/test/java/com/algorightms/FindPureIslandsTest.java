@@ -8,7 +8,7 @@ public class FindPureIslandsTest {
     
     @Test
     @DisplayName("should have zero islands")
-    public void zeroIslands(){
+    public void testZeroIslands(){
         char[][] matrix = {
                 {'0', '0', '0', '0', '0'},
                 {'0', '0', '0', '0', '0'},
@@ -24,7 +24,7 @@ public class FindPureIslandsTest {
 
     @Test
     @DisplayName("should have one island")
-    public void oneIslands(){
+    public void testOneIsland(){
         char[][] matrix = {
                 {'1', '0', '0', '0', '0'},
                 {'0', '0', '0', '0', '0'},
@@ -40,7 +40,7 @@ public class FindPureIslandsTest {
 
     @Test
     @DisplayName("should have two islands")
-    public void twoIslands(){
+    public void testTwoIslands(){
         char[][] matrix = {
                 {'1', '0', '0', '0', '0'},
                 {'0', '0', '0', '0', '0'},
@@ -56,7 +56,7 @@ public class FindPureIslandsTest {
 
     @Test
     @DisplayName("should have lands but no islands")
-    public void noIslands(){
+    public void testNoIslands(){
         char[][] matrix = {
                 {'1', '0', '1', '0', '1'},
                 {'0', '1', '0', '1', '0'},
@@ -72,7 +72,7 @@ public class FindPureIslandsTest {
 
     @Test
     @DisplayName("should have lands and one islands")
-    public void moreLandsOneIsland(){
+    public void testMoreLandsOneIsland(){
         char[][] matrix = {
                 {'1', '1', '1', '1', '0'},
                 {'1', '1', '0', '1', '0'},
